@@ -1,7 +1,16 @@
 var express = require('express') // Llamamos a Express
 var app = express()
 var port = process.env.PORT || 8000
-app.use(express.json())
+
+app.use(express.json());
+
+// Middleware para habilitar CORS
+app.use(function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 
 var basePath = "/grupo-salinas/juridico/firma-documentos";
 
